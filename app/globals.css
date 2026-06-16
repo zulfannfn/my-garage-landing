@@ -1,8 +1,43 @@
 @import "tailwindcss";
 
+/* =============================================
+   LIGHT THEME (default)
+   ============================================= */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #F5F5F7;
+  --bg2: #FFFFFF;
+  --fg: #0F172A;
+  --fg2: #374151;
+  --muted: #6B7280;
+  --border: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(0, 0, 0, 0.07);
+  --card-bg: #FFFFFF;
+  --card-hover-bg: rgba(239, 68, 68, 0.04);
+  --grid-line: rgba(239, 68, 68, 0.07);
+  --red: #EF4444;
+  --red-deep: #DC2626;
+  --section-divider: rgba(0, 0, 0, 0.06);
+  color-scheme: light;
+}
+
+/* =============================================
+   DARK THEME
+   ============================================= */
+.dark {
+  --bg: #0A0A0A;
+  --bg2: #111827;
+  --fg: #FFFFFF;
+  --fg2: #D1D5DB;
+  --muted: #6B7280;
+  --border: rgba(255, 255, 255, 0.07);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-hover-bg: rgba(239, 68, 68, 0.08);
+  --grid-line: rgba(239, 68, 68, 0.04);
+  --section-divider: rgba(255, 255, 255, 0.06);
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -10,17 +45,153 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  /* Semantic theme tokens */
+  --color-t-bg: var(--bg);
+  --color-t-bg2: var(--bg2);
+  --color-t-fg: var(--fg);
+  --color-t-fg2: var(--fg2);
+  --color-t-muted: var(--muted);
+  --color-t-red: var(--red);
+  --color-t-red-deep: var(--red-deep);
+  --color-garage-red: #EF4444;
+  --color-garage-red-deep: #DC2626;
+  --animate-glow-pulse: glow-pulse 2s ease-in-out infinite;
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-race-line: race-line 3s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =============================================
+   KEYFRAMES
+   ============================================= */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); }
+  50% { box-shadow: 0 0 50px rgba(239, 68, 68, 0.7); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes race-line {
+  0% { transform: translateX(-100%) skewX(-15deg); opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateX(200%) skewX(-15deg); opacity: 0; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
+/* =============================================
+   BASE
+   ============================================= */
+html {
+  scroll-behavior: smooth;
+}
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #EF4444, #DC2626); border-radius: 3px; }
+
+/* =============================================
+   UTILITY CLASSES
+   ============================================= */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.carbon-texture {
+  background-image:
+    linear-gradient(45deg, rgba(0,0,0,0.02) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0,0,0,0.02) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(0,0,0,0.02) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0,0,0,0.02) 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 0 2px, 2px -2px, -2px 0px;
+}
+.dark .carbon-texture {
+  background-image:
+    linear-gradient(45deg, rgba(255,255,255,0.015) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255,255,255,0.015) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.015) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.015) 75%);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--fg) 0%, #EF4444 50%, #DC2626 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-red {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.red-glow { box-shadow: 0 0 30px rgba(239, 68, 68, 0.3), 0 0 60px rgba(239, 68, 68, 0.1); }
+
+.red-glow-hover {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.red-glow-hover:hover {
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.3), 0 0 60px rgba(239, 68, 68, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #f87171, #EF4444);
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
+  transform: translateY(-1px);
+}
+
+.section-heading {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.section-divider {
+  border-color: var(--section-divider);
+}
+
+/* Card border using CSS var */
+.card-border { border: 1px solid var(--border); }
+
+/* Light shadow for cards in light mode */
+.card-shadow {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+}
+.dark .card-shadow { box-shadow: none; }
+
+.racing-stripe { position: relative; overflow: hidden; }
+.racing-stripe::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 60%; height: 2px;
+  background: linear-gradient(90deg, transparent, #EF4444, transparent);
+  animation: race-line 3s linear infinite;
 }
