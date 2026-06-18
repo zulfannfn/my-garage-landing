@@ -8,11 +8,11 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "My Garage — Your Complete Automotive Digital Garage",
+  title: "Kelola Bengkel Lebih Mudah dengan My Garage",
   description: "Kelola kendaraan, pantau perawatan, simpan riwayat servis, dan tingkatkan pengalaman otomotif Anda dalam satu platform modern.",
   keywords: ["otomotif", "manajemen kendaraan", "servis kendaraan", "my garage", "automotive platform"],
   openGraph: {
-    title: "My Garage — Your Complete Automotive Digital Garage",
+    title: "Kelola Bengkel Lebih Mudah dengan My Garage",
     description: "Platform otomotif digital untuk mengelola kendaraan, perawatan, dan riwayat servis.",
     type: "website",
   },
