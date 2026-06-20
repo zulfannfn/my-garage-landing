@@ -156,7 +156,7 @@ export const translations = {
       copyright: 'Seluruh hak dilindungi.',
       tagline: 'Dibuat dengan penuh semangat untuk pemilik bengkel di Indonesia',
       productLinks: ['My Garage Lite','My Garage Pro','Privacy Policy','Hapus Akun','Hubungi Kami'],
-      companyLinks: ['Tentang','Blog','Karir','Kebijakan Privasi','Syarat Layanan'],
+      companyLinks: ['Tentang','Kontak','Blog','Kebijakan Privasi','Syarat Layanan'],
       socialLinks: ['Twitter / X','Instagram','YouTube','GitHub','Discord'],
     },
     litePage: {
@@ -207,7 +207,7 @@ export const translations = {
       howTag: 'Cara Penggunaan',
       howH: 'Mulai dalam', howHRed: '4 Langkah Mudah',
       steps: [
-        { num: '01', title: 'Daftar Akun Gratis', desc: 'Buat akun bengkel dalam 30 detik menggunakan email. Tidak perlu kartu kredit.' },
+        { num: '01', title: 'Download & Instalasi', desc: 'Download aplikasi My Garage Lite dan instalasi di perangkat Anda. Tersedia untuk Android dan browser.' },
         { num: '02', title: 'Isi Data Bengkel', desc: 'Masukkan informasi bengkel — nama, alamat, dan jenis layanan yang tersedia.' },
         { num: '03', title: 'Tambah Data Pelanggan', desc: 'Mulai catat data pelanggan dan kendaraan yang datang ke bengkel.' },
         { num: '04', title: 'Catat Servis & Transaksi', desc: 'Catat setiap servis dan transaksi. Lihat laporan usaha bengkel secara langsung.' },
@@ -470,7 +470,7 @@ export const translations = {
       copyright: 'All rights reserved.',
       tagline: 'Built with passion for workshop owners in Indonesia',
       productLinks: ['My Garage Lite','My Garage Pro','Privacy Policy','Delete Account','Contact Us'],
-      companyLinks: ['About','Blog','Careers','Privacy Policy','Terms of Service'],
+      companyLinks: ['About','Contact','Blog','Careers','Privacy Policy','Terms of Service'],
       socialLinks: ['Twitter / X','Instagram','YouTube','GitHub','Discord'],
     },
     litePage: {
@@ -521,7 +521,7 @@ export const translations = {
       howTag: 'How It Works',
       howH: 'Start in', howHRed: '4 Easy Steps',
       steps: [
-        { num: '01', title: 'Create Free Account', desc: 'Sign up in 30 seconds using email or Google. No credit card required.' },
+        { num: '01', title: 'Download & Installation', desc: 'Download My Garage Lite app and install it on your device. Available for Android and browser.' },
         { num: '02', title: 'Add Your Vehicle', desc: 'Enter your vehicle data — make, year, plate number, and other specifications.' },
         { num: '03', title: 'Set Maintenance Schedule', desc: 'Set reminders for service, oil changes, and routine maintenance for your vehicle.' },
         { num: '04', title: 'Monitor & Record', desc: 'Receive timely notifications and log every completed maintenance task.' },

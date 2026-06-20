@@ -35,7 +35,7 @@ function LiteMockup() {
             <div className="flex items-center gap-2.5 mb-2">
               <div className="w-7 h-7 bg-gradient-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center text-xs">🚗</div>
               <div>
-                <p className="text-xs font-semibold" style={{ color: 'var(--fg)' }}>Toyota Supra GR</p>
+                <p className="text-xs font-semibold" style={{ color: 'var(--fg)' }}>Honda PCX 150</p>
                 <p className="text-[10px]" style={{ color: 'var(--muted)' }}>B 1234 XYZ</p>
               </div>
             </div>

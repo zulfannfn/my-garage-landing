@@ -13,20 +13,103 @@ const DOWNLOAD_URL = 'https://drive.google.com/drive/folders/1pSV5gnGbIFrtMq4-D0
 const featureIcons = [Car, Bell, Clock, Fuel, History]
 
 const comparisonRows = [
-  { feature: { id: 'Manajemen Kendaraan', en: 'Vehicle Management' }, lite: true, pro: true },
-  { feature: { id: 'Pengingat Servis', en: 'Service Reminder' }, lite: true, pro: true },
-  { feature: { id: 'Catatan Perawatan', en: 'Maintenance Tracking' }, lite: true, pro: true },
-  { feature: { id: 'Catatan Bahan Bakar', en: 'Fuel Records' }, lite: true, pro: true },
-  { feature: { id: 'Riwayat Kendaraan', en: 'Vehicle History' }, lite: true, pro: true },
-  { feature: { id: 'Ekspor PDF', en: 'PDF Export' }, lite: true, pro: true },
-  { feature: { id: 'Sinkronisasi Cloud', en: 'Cloud Sync' }, lite: true, pro: true },
-  { feature: { id: 'Advanced Analytics', en: 'Advanced Analytics' }, lite: false, pro: true },
-  { feature: { id: 'Manajemen Bengkel', en: 'Workshop Management' }, lite: false, pro: true },
-  { feature: { id: 'Fleet Monitoring', en: 'Fleet Monitoring' }, lite: false, pro: true },
-  { feature: { id: 'Laporan Profesional', en: 'Professional Reports' }, lite: false, pro: true },
-  { feature: { id: 'Multi-user & Tim', en: 'Multi-user & Team' }, lite: false, pro: true },
-  { feature: { id: 'API Access', en: 'API Access' }, lite: false, pro: true },
-  { feature: { id: 'Support 24/7', en: '24/7 Support' }, lite: false, pro: true },
+  // MyGarage Lite Features (available in both Lite and Pro)
+  { 
+    feature: { id: 'Dashboard', en: 'Dashboard' }, 
+    lite: true, pro: true,
+    details: { id: 'Ringkasan pendapatan, notifikasi stok, status antrian, quick action', en: 'Revenue summary, stock notifications, queue status, quick action' }
+  },
+  { 
+    feature: { id: 'Manajemen Pelanggan', en: 'Customer Management' }, 
+    lite: true, pro: true,
+    details: { id: 'CRUD pelanggan, riwayat servis, telepon & WhatsApp langsung', en: 'Customer CRUD, service history, direct phone & WhatsApp' }
+  },
+  { 
+    feature: { id: 'Transaksi & Servis', en: 'Transactions & Service' }, 
+    lite: true, pro: true,
+    details: { id: 'Transaksi servis & retail, pilih mekanik, kirim struk WhatsApp, cetak Bluetooth', en: 'Service & retail transactions, select mechanic, send WhatsApp receipt, Bluetooth print' }
+  },
+  { 
+    feature: { id: 'Manajemen Sparepart/Stok', en: 'Sparepart/Stock Management' }, 
+    lite: true, pro: true,
+    details: { id: 'CRUD sparepart, alert stok, riwayat pergerakan, import CSV', en: 'Sparepart CRUD, stock alerts, movement history, CSV import' }
+  },
+  { 
+    feature: { id: 'Purchase Order (PO)', en: 'Purchase Order (PO)' }, 
+    lite: true, pro: true,
+    details: { id: 'Buat & kelola PO, status PO, filter, export PDF', en: 'Create & manage PO, PO status, filter, export PDF' }
+  },
+  { 
+    feature: { id: 'Reminder Servis Berkala', en: 'Periodic Service Reminder' }, 
+    lite: true, pro: true,
+    details: { id: 'Reminder otomatis, filter due list, kirim WhatsApp, reminder manual', en: 'Auto reminder, due list filter, send WhatsApp, manual reminder' }
+  },
+  { 
+    feature: { id: 'Manajemen Karyawan/Mekanik', en: 'Employee/Mechanic Management' }, 
+    lite: true, pro: true,
+    details: { id: 'CRUD karyawan, status aktif/nonaktif, kalkulasi bagi hasil', en: 'Employee CRUD, active/inactive status, profit sharing calculation' }
+  },
+  { 
+    feature: { id: 'Laporan & Analitik', en: 'Reports & Analytics' }, 
+    lite: true, pro: true,
+    details: { id: 'Laporan harian/bulanan, grafik pendapatan, kelola biaya operasional, export PDF/CSV', en: 'Daily/monthly reports, revenue charts, operational expenses, export PDF/CSV' }
+  },
+  { 
+    feature: { id: 'Pengaturan', en: 'Settings' }, 
+    lite: true, pro: true,
+    details: { id: 'Profil bengkel, bahasa ID/EN, ukuran kertas struk, printer Bluetooth, mode gelap/terang, backup/restore', en: 'Workshop profile, ID/EN language, receipt paper size, Bluetooth printer, dark/light mode, backup/restore' }
+  },
+  // Pro-exclusive Features
+  { 
+    feature: { id: 'Advanced Analytics', en: 'Advanced Analytics' }, 
+    lite: false, pro: true,
+    details: { id: 'Prediksi pendapatan AI, analisis tren, rekomendasi harga, forecasting stok', en: 'AI revenue prediction, trend analysis, price recommendations, stock forecasting' }
+  },
+  { 
+    feature: { id: 'Manajemen Bengkel', en: 'Workshop Management' }, 
+    lite: false, pro: true,
+    details: { id: 'Multi-cabang, sinkronisasi data real-time, manajemen lokasi, transfer antar cabang', en: 'Multi-branch, real-time data sync, location management, inter-branch transfer' }
+  },
+  { 
+    feature: { id: 'Fleet Monitoring', en: 'Fleet Monitoring' }, 
+    lite: false, pro: true,
+    details: { id: 'GPS tracking real-time, monitoring armada, route optimization, maintenance scheduling', en: 'Real-time GPS tracking, fleet monitoring, route optimization, maintenance scheduling' }
+  },
+  { 
+    feature: { id: 'Multi-user & Tim', en: 'Multi-user & Team' }, 
+    lite: false, pro: true,
+    details: { id: 'Role-based access, permission management, team collaboration, activity log', en: 'Role-based access, permission management, team collaboration, activity log' }
+  },
+  { 
+    feature: { id: 'Quality Control', en: 'Quality Control' }, 
+    lite: false, pro: true,
+    details: { id: 'Inspeksi kualitas, checklist QC, approval workflow, foto dokumentasi', en: 'Quality inspection, QC checklist, approval workflow, photo documentation' }
+  },
+  { 
+    feature: { id: 'Stock Opname', en: 'Stock Opname' }, 
+    lite: false, pro: true,
+    details: { id: 'Stock opname digital, selisih otomatis, approval adjustment, history audit', en: 'Digital stock opname, auto discrepancy, adjustment approval, audit history' }
+  },
+  { 
+    feature: { id: 'Monitoring Antrian', en: 'Queue Monitoring' }, 
+    lite: false, pro: true,
+    details: { id: 'Real-time queue view, estimasi waktu, notifikasi pelanggan, priority queue', en: 'Real-time queue view, time estimation, customer notification, priority queue' }
+  },
+  { 
+    feature: { id: 'Integrasi Pembayaran', en: 'Payment Integration' }, 
+    lite: false, pro: true,
+    details: { id: 'QRIS, EDC, virtual account, split payment, rekonsiliasi otomatis', en: 'QRIS, EDC, virtual account, split payment, auto reconciliation' }
+  },
+  { 
+    feature: { id: 'Cloud Backup & Sync', en: 'Cloud Backup & Sync' }, 
+    lite: false, pro: true,
+    details: { id: 'Backup otomatis cloud, multi-device sync, restore instan, version history', en: 'Auto cloud backup, multi-device sync, instant restore, version history' }
+  },
+  { 
+    feature: { id: 'Support 24/7', en: '24/7 Support' }, 
+    lite: false, pro: true,
+    details: { id: 'Live chat, video call, remote assistance, dedicated account manager', en: 'Live chat, video call, remote assistance, dedicated account manager' }
+  },
 ]
 
 export default function LitePage() {
@@ -40,7 +123,7 @@ export default function LitePage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-24 overflow-hidden">
+      <section className="relative pt-40 pb-24 overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div className="absolute left-1/2 -translate-x-1/2 top-20 w-[600px] h-[600px] rounded-full blur-[140px] pointer-events-none"
           style={{ background: 'rgba(34,197,94,0.06)' }} />
@@ -107,24 +190,27 @@ export default function LitePage() {
                       <span className="text-[10px] px-2 py-0.5 rounded-full"
                         style={{ background: 'rgba(34,197,94,0.12)', color: '#22c55e' }}>Free</span>
                     </div>
-                    {/* Health ring */}
-                    <div className="flex items-center justify-center py-3">
-                      <div className="relative w-20 h-20">
-                        <svg viewBox="0 0 80 80" className="w-full h-full -rotate-90">
-                          <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(34,197,94,0.15)" strokeWidth="8" />
-                          <circle cx="40" cy="40" r="32" fill="none" stroke="#22c55e" strokeWidth="8"
-                            strokeDasharray="201" strokeDashoffset="52" strokeLinecap="round" />
-                        </svg>
-                        <div className="absolute inset-0 flex flex-col items-center justify-center">
-                          <p className="text-lg font-black" style={{ color: 'var(--fg)' }}>87%</p>
-                          <p className="text-[9px]" style={{ color: 'var(--muted)' }}>Health</p>
-                        </div>
+                    {/* Bar chart */}
+                    <div className="rounded-xl p-3 border" style={{ background: 'var(--card-hover-bg)', borderColor: 'var(--border)' }}>
+                      <p className="text-[10px] mb-2" style={{ color: 'var(--muted)' }}>Monthly Service</p>
+                      <div className="flex items-end gap-1 h-10">
+                        {[40, 65, 50, 80, 55, 70, 60].map((h, i) => (
+                          <div key={i} className="flex-1 rounded-t"
+                            style={{ height: `${h}%`, background: i === 3 ? '#22c55e' : 'rgba(34,197,94,0.2)' }} />
+                        ))}
                       </div>
                     </div>
-                    {/* Car info */}
-                    <div className="rounded-xl p-3 border" style={{ background: 'var(--card-hover-bg)', borderColor: 'var(--border)' }}>
-                      <p className="text-xs font-semibold" style={{ color: 'var(--fg)' }}>Toyota Supra GR</p>
-                      <p className="text-[10px]" style={{ color: 'var(--muted)' }}>B 1234 XYZ · 45,200 km</p>
+                    {/* Pie chart */}
+                    <div className="rounded-xl p-3 border flex items-center justify-center" style={{ background: 'var(--card-hover-bg)', borderColor: 'var(--border)' }}>
+                      <div className="relative w-16 h-16">
+                        <svg viewBox="0 0 60 60" className="w-full h-full">
+                          <circle cx="30" cy="30" r="25" fill="none" stroke="rgba(34,197,94,0.15)" strokeWidth="8" />
+                          <circle cx="30" cy="30" r="25" fill="none" stroke="#22c55e" strokeWidth="8"
+                            strokeDasharray="157" strokeDashoffset="50" strokeLinecap="round" transform="rotate(-90 30 30)" />
+                          <circle cx="30" cy="30" r="25" fill="none" stroke="#16a34a" strokeWidth="8"
+                            strokeDasharray="157" strokeDashoffset="110" strokeLinecap="round" transform="rotate(45 30 30)" />
+                        </svg>
+                      </div>
                     </div>
                     {/* Reminders */}
                     {[
@@ -140,16 +226,6 @@ export default function LitePage() {
                         <span className="text-[10px]" style={{ color: 'var(--muted)' }}>{r.due}</span>
                       </div>
                     ))}
-                    {/* Fuel bar */}
-                    <div className="rounded-xl p-3 border" style={{ background: 'var(--card-hover-bg)', borderColor: 'var(--border)' }}>
-                      <p className="text-[10px] mb-2" style={{ color: 'var(--muted)' }}>Fuel Efficiency</p>
-                      <div className="flex items-end gap-1 h-10">
-                        {[55, 70, 45, 80, 60, 90, 75].map((h, i) => (
-                          <div key={i} className="flex-1 rounded-t"
-                            style={{ height: `${h}%`, background: i === 5 ? '#22c55e' : 'rgba(34,197,94,0.2)' }} />
-                        ))}
-                      </div>
-                    </div>
                   </div>
                 </div>
                 {/* Glow */}
@@ -329,8 +405,13 @@ export default function LitePage() {
             {comparisonRows.map((row, i) => (
               <div key={i} className="grid grid-cols-3 border-b last:border-0"
                 style={{ borderColor: 'var(--border)', background: i % 2 === 0 ? 'transparent' : 'var(--card-hover-bg)' }}>
-                <div className="p-3.5 text-sm" style={{ color: 'var(--fg2)' }}>
-                  {lang === 'id' ? row.feature.id : row.feature.en}
+                <div className="p-3.5" style={{ color: 'var(--fg2)' }}>
+                  <p className="text-sm font-medium">{lang === 'id' ? row.feature.id : row.feature.en}</p>
+                  {row.details && (
+                    <p className="text-xs mt-1" style={{ color: 'var(--muted)' }}>
+                      {lang === 'id' ? row.details.id : row.details.en}
+                    </p>
+                  )}
                 </div>
                 <div className="p-3.5 flex items-center justify-center border-l" style={{ borderColor: 'var(--border)' }}>
                   {row.lite

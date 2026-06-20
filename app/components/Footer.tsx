@@ -3,8 +3,8 @@
 import { Gauge } from 'lucide-react'
 import { useLanguage } from '../providers/LanguageProvider'
 
-const productHrefs = ['#products', '#products', '#features', '#roadmap', '#']
-const companyHrefs = ['#about', '#', '#', '#', '#']
+const productHrefs = ['/pricing', '/lite', '/pro', '#features', '#']
+const companyHrefs = ['/about', '/contact', '#', '#', '#']
 const socialHrefs = ['#', '#', '#', '#', '#']
 
 export default function Footer() {

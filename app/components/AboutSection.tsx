@@ -73,7 +73,7 @@ export default function AboutSection() {
 
               <div className="space-y-3 mb-6">
                 {[
-                  { name: 'Toyota Supra GR', plate: 'B 1234 XYZ', health: 87, dot: 'bg-green-400' },
+                  { name: 'Honda PCX 150', plate: 'B 1234 XYZ', health: 87, dot: 'bg-green-400' },
                   { name: 'Honda Civic Type R', plate: 'D 5678 ABC', health: 72, dot: 'bg-yellow-400' },
                   { name: 'Mazda MX-5 Miata', plate: 'L 9012 DEF', health: 94, dot: 'bg-green-400' },
                 ].map((v) => (

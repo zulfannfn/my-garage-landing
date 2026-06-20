@@ -13,20 +13,103 @@ const DOWNLOAD_URL = 'https://drive.google.com/drive/folders/1pSV5gnGbIFrtMq4-D0
 const featureIcons = [BarChart3, Building2, Layers, FileBarChart, Star]
 
 const comparisonRows = [
-  { feature: { id: 'Manajemen Kendaraan', en: 'Vehicle Management' }, lite: true, pro: true },
-  { feature: { id: 'Pengingat Servis', en: 'Service Reminder' }, lite: true, pro: true },
-  { feature: { id: 'Catatan Perawatan', en: 'Maintenance Tracking' }, lite: true, pro: true },
-  { feature: { id: 'Catatan Bahan Bakar', en: 'Fuel Records' }, lite: true, pro: true },
-  { feature: { id: 'Riwayat Kendaraan', en: 'Vehicle History' }, lite: true, pro: true },
-  { feature: { id: 'Ekspor PDF', en: 'PDF Export' }, lite: true, pro: true },
-  { feature: { id: 'Sinkronisasi Cloud', en: 'Cloud Sync' }, lite: true, pro: true },
-  { feature: { id: 'Advanced Analytics', en: 'Advanced Analytics' }, lite: false, pro: true },
-  { feature: { id: 'Manajemen Bengkel', en: 'Workshop Management' }, lite: false, pro: true },
-  { feature: { id: 'Fleet Monitoring', en: 'Fleet Monitoring' }, lite: false, pro: true },
-  { feature: { id: 'Laporan Profesional', en: 'Professional Reports' }, lite: false, pro: true },
-  { feature: { id: 'Multi-user & Tim', en: 'Multi-user & Team' }, lite: false, pro: true },
-  { feature: { id: 'API Access', en: 'API Access' }, lite: false, pro: true },
-  { feature: { id: 'Support 24/7', en: '24/7 Support' }, lite: false, pro: true },
+  // MyGarage Lite Features (available in both Lite and Pro)
+  { 
+    feature: { id: 'Dashboard', en: 'Dashboard' }, 
+    lite: true, pro: true,
+    details: { id: 'Ringkasan pendapatan, notifikasi stok, status antrian, quick action', en: 'Revenue summary, stock notifications, queue status, quick action' }
+  },
+  { 
+    feature: { id: 'Manajemen Pelanggan', en: 'Customer Management' }, 
+    lite: true, pro: true,
+    details: { id: 'CRUD pelanggan, riwayat servis, telepon & WhatsApp langsung', en: 'Customer CRUD, service history, direct phone & WhatsApp' }
+  },
+  { 
+    feature: { id: 'Transaksi & Servis', en: 'Transactions & Service' }, 
+    lite: true, pro: true,
+    details: { id: 'Transaksi servis & retail, pilih mekanik, kirim struk WhatsApp, cetak Bluetooth', en: 'Service & retail transactions, select mechanic, send WhatsApp receipt, Bluetooth print' }
+  },
+  { 
+    feature: { id: 'Manajemen Sparepart/Stok', en: 'Sparepart/Stock Management' }, 
+    lite: true, pro: true,
+    details: { id: 'CRUD sparepart, alert stok, riwayat pergerakan, import CSV', en: 'Sparepart CRUD, stock alerts, movement history, CSV import' }
+  },
+  { 
+    feature: { id: 'Purchase Order (PO)', en: 'Purchase Order (PO)' }, 
+    lite: true, pro: true,
+    details: { id: 'Buat & kelola PO, status PO, filter, export PDF', en: 'Create & manage PO, PO status, filter, export PDF' }
+  },
+  { 
+    feature: { id: 'Reminder Servis Berkala', en: 'Periodic Service Reminder' }, 
+    lite: true, pro: true,
+    details: { id: 'Reminder otomatis, filter due list, kirim WhatsApp, reminder manual', en: 'Auto reminder, due list filter, send WhatsApp, manual reminder' }
+  },
+  { 
+    feature: { id: 'Manajemen Karyawan/Mekanik', en: 'Employee/Mechanic Management' }, 
+    lite: true, pro: true,
+    details: { id: 'CRUD karyawan, status aktif/nonaktif, kalkulasi bagi hasil', en: 'Employee CRUD, active/inactive status, profit sharing calculation' }
+  },
+  { 
+    feature: { id: 'Laporan & Analitik', en: 'Reports & Analytics' }, 
+    lite: true, pro: true,
+    details: { id: 'Laporan harian/bulanan, grafik pendapatan, kelola biaya operasional, export PDF/CSV', en: 'Daily/monthly reports, revenue charts, operational expenses, export PDF/CSV' }
+  },
+  { 
+    feature: { id: 'Pengaturan', en: 'Settings' }, 
+    lite: true, pro: true,
+    details: { id: 'Profil bengkel, bahasa ID/EN, ukuran kertas struk, printer Bluetooth, mode gelap/terang, backup/restore', en: 'Workshop profile, ID/EN language, receipt paper size, Bluetooth printer, dark/light mode, backup/restore' }
+  },
+  // Pro-exclusive Features
+  { 
+    feature: { id: 'Advanced Analytics', en: 'Advanced Analytics' }, 
+    lite: false, pro: true,
+    details: { id: 'Prediksi pendapatan AI, analisis tren, rekomendasi harga, forecasting stok', en: 'AI revenue prediction, trend analysis, price recommendations, stock forecasting' }
+  },
+  { 
+    feature: { id: 'Manajemen Bengkel', en: 'Workshop Management' }, 
+    lite: false, pro: true,
+    details: { id: 'Multi-cabang, sinkronisasi data real-time, manajemen lokasi, transfer antar cabang', en: 'Multi-branch, real-time data sync, location management, inter-branch transfer' }
+  },
+  { 
+    feature: { id: 'Fleet Monitoring', en: 'Fleet Monitoring' }, 
+    lite: false, pro: true,
+    details: { id: 'GPS tracking real-time, monitoring armada, route optimization, maintenance scheduling', en: 'Real-time GPS tracking, fleet monitoring, route optimization, maintenance scheduling' }
+  },
+  { 
+    feature: { id: 'Multi-user & Tim', en: 'Multi-user & Team' }, 
+    lite: false, pro: true,
+    details: { id: 'Role-based access, permission management, team collaboration, activity log', en: 'Role-based access, permission management, team collaboration, activity log' }
+  },
+  { 
+    feature: { id: 'Quality Control', en: 'Quality Control' }, 
+    lite: false, pro: true,
+    details: { id: 'Inspeksi kualitas, checklist QC, approval workflow, foto dokumentasi', en: 'Quality inspection, QC checklist, approval workflow, photo documentation' }
+  },
+  { 
+    feature: { id: 'Stock Opname', en: 'Stock Opname' }, 
+    lite: false, pro: true,
+    details: { id: 'Stock opname digital, selisih otomatis, approval adjustment, history audit', en: 'Digital stock opname, auto discrepancy, adjustment approval, audit history' }
+  },
+  { 
+    feature: { id: 'Monitoring Antrian', en: 'Queue Monitoring' }, 
+    lite: false, pro: true,
+    details: { id: 'Real-time queue view, estimasi waktu, notifikasi pelanggan, priority queue', en: 'Real-time queue view, time estimation, customer notification, priority queue' }
+  },
+  { 
+    feature: { id: 'Integrasi Pembayaran', en: 'Payment Integration' }, 
+    lite: false, pro: true,
+    details: { id: 'QRIS, EDC, virtual account, split payment, rekonsiliasi otomatis', en: 'QRIS, EDC, virtual account, split payment, auto reconciliation' }
+  },
+  { 
+    feature: { id: 'Cloud Backup & Sync', en: 'Cloud Backup & Sync' }, 
+    lite: false, pro: true,
+    details: { id: 'Backup otomatis cloud, multi-device sync, restore instan, version history', en: 'Auto cloud backup, multi-device sync, instant restore, version history' }
+  },
+  { 
+    feature: { id: 'Support 24/7', en: '24/7 Support' }, 
+    lite: false, pro: true,
+    details: { id: 'Live chat, video call, remote assistance, dedicated account manager', en: 'Live chat, video call, remote assistance, dedicated account manager' }
+  },
 ]
 
 export default function ProPage() {
@@ -40,7 +123,7 @@ export default function ProPage() {
       <Navbar />
 
       {/* Beta banner */}
-      <div className="w-full py-2.5 text-center text-xs font-semibold"
+      <div className="w-full py-2.5 text-center text-xs font-semibold mt-16"
         style={{ background: 'linear-gradient(90deg,#DC2626,#EF4444,#DC2626)', color: '#fff' }}>
         {p.betaBanner}
       </div>
@@ -112,7 +195,7 @@ export default function ProPage() {
                       {lang === 'id' ? 'Dashboard Pro' : 'Pro Dashboard'}
                     </p>
                     <p className="text-xs" style={{ color: 'var(--muted)' }}>
-                      {lang === 'id' ? '3 armada · Aktif' : '3 fleet · Active'}
+                      {lang === 'id' ? 'Analytics Real-time' : 'Real-time Analytics'}
                     </p>
                   </div>
                   <span className="text-xs px-3 py-1 rounded-full font-semibold"
@@ -121,27 +204,86 @@ export default function ProPage() {
                   </span>
                 </div>
 
-                {/* Fleet bars */}
-                <div className="space-y-2.5 mb-5">
-                  {[
-                    { name: 'Toyota Supra GR', plate: 'B 1234 XYZ', health: 87, color: '#22c55e' },
-                    { name: 'Honda Civic Type R', plate: 'D 5678 ABC', health: 72, color: '#f59e0b' },
-                    { name: 'Mazda MX-5 Miata', plate: 'L 9012 DEF', health: 94, color: '#22c55e' },
-                  ].map((v) => (
-                    <div key={v.name} className="rounded-xl px-4 py-3 border"
-                      style={{ background: 'var(--card-hover-bg)', borderColor: 'var(--border)' }}>
-                      <div className="flex items-center justify-between mb-2">
-                        <div>
-                          <p className="text-xs font-semibold" style={{ color: 'var(--fg)' }}>{v.name}</p>
-                          <p className="text-[10px]" style={{ color: 'var(--muted)' }}>{v.plate}</p>
-                        </div>
-                        <span className="text-xs font-bold" style={{ color: v.color }}>{v.health}%</span>
-                      </div>
-                      <div className="h-1.5 rounded-full" style={{ background: 'var(--border)' }}>
-                        <div className="h-full rounded-full transition-all" style={{ width: `${v.health}%`, background: v.color }} />
-                      </div>
+                {/* Charts grid */}
+                <div className="grid grid-cols-2 gap-3 mb-5">
+                  {/* Line chart */}
+                  <div className="rounded-xl p-3 border col-span-2"
+                    style={{ background: 'var(--card-hover-bg)', borderColor: 'var(--border)' }}>
+                    <p className="text-[10px] uppercase tracking-wider mb-2" style={{ color: 'var(--muted)' }}>
+                      {lang === 'id' ? 'Tren Pendapatan' : 'Revenue Trend'}
+                    </p>
+                    <svg viewBox="0 0 200 60" className="w-full h-12">
+                      <motion.path
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1.5, delay: 0.3 }}
+                        d="M0,50 Q30,45 60,35 T120,25 T180,15 T200,10"
+                        fill="none"
+                        stroke="url(#heroLineGradient)"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <defs>
+                        <linearGradient id="heroLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#DC2626" />
+                          <stop offset="100%" stopColor="#EF4444" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+
+                  {/* Bar chart */}
+                  <div className="rounded-xl p-3 border"
+                    style={{ background: 'var(--card-hover-bg)', borderColor: 'var(--border)' }}>
+                    <p className="text-[10px] uppercase tracking-wider mb-2" style={{ color: 'var(--muted)' }}>
+                      {lang === 'id' ? 'Servis Bulanan' : 'Monthly Service'}
+                    </p>
+                    <div className="flex items-end gap-1 h-12">
+                      {[40, 65, 50, 80, 55, 70].map((h, i) => (
+                        <motion.div key={i}
+                          initial={{ height: 0 }}
+                          animate={{ height: `${h}%` }}
+                          transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
+                          className="flex-1 rounded-t"
+                          style={{ background: i === 3 ? '#EF4444' : 'rgba(239,68,68,0.3)' }}
+                        />
+                      ))}
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Pie chart */}
+                  <div className="rounded-xl p-3 border flex flex-col items-center justify-center"
+                    style={{ background: 'var(--card-hover-bg)', borderColor: 'var(--border)' }}>
+                    <p className="text-[10px] uppercase tracking-wider mb-2" style={{ color: 'var(--muted)' }}>
+                      {lang === 'id' ? 'Distribusi' : 'Distribution'}
+                    </p>
+                    <svg viewBox="0 0 60 60" className="w-12 h-12">
+                      <motion.circle
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.5 }}
+                        cx="30" cy="30" r="25"
+                        fill="none"
+                        stroke="#DC2626"
+                        strokeWidth="8"
+                        strokeDasharray="157"
+                        strokeDashoffset="50"
+                        transform="rotate(-90 30 30)"
+                      />
+                      <motion.circle
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.6 }}
+                        cx="30" cy="30" r="25"
+                        fill="none"
+                        stroke="#EF4444"
+                        strokeWidth="8"
+                        strokeDasharray="157"
+                        strokeDashoffset="110"
+                        transform="rotate(45 30 30)"
+                      />
+                    </svg>
+                  </div>
                 </div>
 
                 {/* Mini analytics */}
@@ -250,16 +392,127 @@ export default function ProPage() {
                           </div>
                           <span className="text-xs font-semibold" style={{ color: 'var(--fg)' }}>{f.title}</span>
                         </div>
-                        {/* Generic chart visualization */}
-                        <div className="flex items-end gap-1.5 h-16 mb-2">
-                          {[40 + i * 5, 65, 30 + i * 3, 80, 55 + i * 2, 90, 70 + i].map((h, j) => (
-                            <motion.div key={j}
-                              initial={{ height: 0 }} whileInView={{ height: `${Math.min(h, 100)}%` }}
-                              viewport={{ once: true }} transition={{ duration: 0.5, delay: j * 0.05 }}
-                              className="flex-1 rounded-t"
-                              style={{ background: j === 5 ? 'linear-gradient(to top,#DC2626,#EF4444)' : 'rgba(239,68,68,0.18)' }} />
-                          ))}
-                        </div>
+                        {/* Chart visualization - varies by feature type */}
+                        {i === 0 && (
+                          // Bar chart for first feature
+                          <div className="flex items-end gap-1.5 h-16 mb-2">
+                            {[40, 65, 30, 80, 55, 90, 70].map((h, j) => (
+                              <motion.div key={j}
+                                initial={{ height: 0 }} whileInView={{ height: `${Math.min(h, 100)}%` }}
+                                viewport={{ once: true }} transition={{ duration: 0.5, delay: j * 0.05 }}
+                                className="flex-1 rounded-t"
+                                style={{ background: j === 5 ? 'linear-gradient(to top,#DC2626,#EF4444)' : 'rgba(239,68,68,0.18)' }} />
+                            ))}
+                          </div>
+                        )}
+                        {i === 1 && (
+                          // Line chart for second feature
+                          <div className="relative h-16 mb-2">
+                            <svg viewBox="0 0 200 60" className="w-full h-full">
+                              <motion.path
+                                initial={{ pathLength: 0 }}
+                                whileInView={{ pathLength: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1 }}
+                                d="M0,50 Q30,40 50,30 T100,25 T150,35 T200,20"
+                                fill="none"
+                                stroke="url(#lineGradient)"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                              <defs>
+                                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                  <stop offset="0%" stopColor="#DC2626" />
+                                  <stop offset="100%" stopColor="#EF4444" />
+                                </linearGradient>
+                              </defs>
+                            </svg>
+                          </div>
+                        )}
+                        {i === 2 && (
+                          // Pie chart for third feature
+                          <div className="flex items-center justify-center h-16 mb-2">
+                            <svg viewBox="0 0 60 60" className="w-16 h-16">
+                              <motion.circle
+                                initial={{ pathLength: 0 }}
+                                whileInView={{ pathLength: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8 }}
+                                cx="30" cy="30" r="25"
+                                fill="none"
+                                stroke="#DC2626"
+                                strokeWidth="8"
+                                strokeDasharray="157"
+                                strokeDashoffset="40"
+                                transform="rotate(-90 30 30)"
+                              />
+                              <motion.circle
+                                initial={{ pathLength: 0 }}
+                                whileInView={{ pathLength: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                                cx="30" cy="30" r="25"
+                                fill="none"
+                                stroke="#EF4444"
+                                strokeWidth="8"
+                                strokeDasharray="157"
+                                strokeDashoffset="100"
+                                transform="rotate(90 30 30)"
+                              />
+                            </svg>
+                          </div>
+                        )}
+                        {i === 3 && (
+                          // Area chart for fourth feature
+                          <div className="relative h-16 mb-2">
+                            <svg viewBox="0 0 200 60" className="w-full h-full">
+                              <motion.path
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6 }}
+                                d="M0,60 L0,40 Q40,35 80,25 T160,30 T200,15 L200,60 Z"
+                                fill="rgba(239,68,68,0.2)"
+                              />
+                              <motion.path
+                                initial={{ pathLength: 0 }}
+                                whileInView={{ pathLength: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8 }}
+                                d="M0,40 Q40,35 80,25 T160,30 T200,15"
+                                fill="none"
+                                stroke="#EF4444"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            </svg>
+                          </div>
+                        )}
+                        {i === 4 && (
+                          // Stacked bar chart for fifth feature
+                          <div className="flex items-end gap-1.5 h-16 mb-2">
+                            {[45, 70, 55, 85, 60, 75, 50].map((h, j) => (
+                              <div key={j} className="flex-1 flex flex-col gap-0.5">
+                                <motion.div
+                                  initial={{ height: 0 }}
+                                  whileInView={{ height: `${h * 0.6}%` }}
+                                  viewport={{ once: true }}
+                                  transition={{ duration: 0.4, delay: j * 0.05 }}
+                                  className="w-full rounded-t"
+                                  style={{ background: '#DC2626' }}
+                                />
+                                <motion.div
+                                  initial={{ height: 0 }}
+                                  whileInView={{ height: `${h * 0.4}%` }}
+                                  viewport={{ once: true }}
+                                  transition={{ duration: 0.4, delay: j * 0.05 + 0.1 }}
+                                  className="w-full rounded-b"
+                                  style={{ background: 'rgba(239,68,68,0.4)' }}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        )}
                         <div className="space-y-1.5">
                           {f.points.slice(0, 2).map((pt, j) => (
                             <div key={j} className="flex items-center gap-2 rounded-lg px-2.5 py-1.5"
@@ -340,8 +593,13 @@ export default function ProPage() {
             {comparisonRows.map((row, i) => (
               <div key={i} className="grid grid-cols-3 border-b last:border-0"
                 style={{ borderColor: 'var(--border)', background: i % 2 === 0 ? 'transparent' : 'var(--card-hover-bg)' }}>
-                <div className="p-3.5 text-sm" style={{ color: 'var(--fg2)' }}>
-                  {lang === 'id' ? row.feature.id : row.feature.en}
+                <div className="p-3.5" style={{ color: 'var(--fg2)' }}>
+                  <p className="text-sm font-medium">{lang === 'id' ? row.feature.id : row.feature.en}</p>
+                  {row.details && (
+                    <p className="text-xs mt-1" style={{ color: 'var(--muted)' }}>
+                      {lang === 'id' ? row.details.id : row.details.en}
+                    </p>
+                  )}
                 </div>
                 <div className="p-3.5 flex items-center justify-center border-l" style={{ borderColor: 'var(--border)' }}>
                   {row.lite
