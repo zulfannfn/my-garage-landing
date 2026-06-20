@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Gauge, Sun, Moon, ChevronDown } from 'lucide-react'
+import { Menu, X, Gauge, Sun, Moon } from 'lucide-react'
 import Link from 'next/link'
 import { useTheme } from '../providers/ThemeProvider'
 import { useLanguage } from '../providers/LanguageProvider'
@@ -156,50 +156,15 @@ export default function Navbar() {
           >
             <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
-                link.hasDropdown ? (
-                  <div key={link.label} className="relative">
-                    <button
-                      onClick={() => setFeaturesOpen(!featuresOpen)}
-                      className="w-full px-4 py-3 rounded-xl transition-colors text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 flex items-center justify-between"
-                      style={{ color: 'var(--fg2)' }}
-                    >
-                      {link.label}
-                      <ChevronDown className="w-3 h-3" />
-                    </button>
-                    <AnimatePresence>
-                      {featuresOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="pl-4 space-y-1"
-                        >
-                          {featuresList.map((feature) => (
-                            <Link
-                              key={feature.label}
-                              href={feature.href}
-                              onClick={(e) => { e.preventDefault(); scrollTo(feature.href) }}
-                              className="block px-4 py-2 rounded-lg text-sm transition-colors hover:bg-black/5 dark:hover:bg-white/5"
-                              style={{ color: 'var(--fg2)' }}
-                            >
-                              {feature.label}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    onClick={(e) => { if (link.href.startsWith('#')) { e.preventDefault(); scrollTo(link.href) } }}
-                    className="px-4 py-3 rounded-xl transition-colors text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5"
-                    style={{ color: 'var(--fg2)' }}
-                  >
-                    {link.label}
-                  </Link>
-                )
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => { if (link.href.startsWith('#')) { e.preventDefault(); scrollTo(link.href) } }}
+                  className="px-4 py-3 rounded-xl transition-colors text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5"
+                  style={{ color: 'var(--fg2)' }}
+                >
+                  {link.label}
+                </Link>
               ))}
               <div className="flex gap-2 pt-2 pb-1">
                 <button onClick={toggleLang} className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border flex-1 justify-center"
